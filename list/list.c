@@ -116,7 +116,7 @@ void* listRemove(struct list* l, int i) {
     }
     pre  = NULL;
     node = l->head;
-    while(step < i || node != NULL) {
+    while(step < i && node != NULL) {
         pre  = node;
         node = node->next;
         step++;
