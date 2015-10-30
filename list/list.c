@@ -40,6 +40,29 @@ int listPush(struct list *l, void *valPtr) {
  return  ++l->len;
 }
 
+void* listPop(struct list* l) {
+  struct listNode* node = NULL;
+  void* pval = NULL;
+  if (NULL == l || NULL == l->tail) {
+    return NULL;
+  }
+  if (l->tail == l->head) {
+    node = l->tail;
+    l->head = l->tail = NULL;
+  } else {
+    node = l->head;
+    while(node->next != l->tail) {
+      node = node->next;
+    }
+    l->tail = node;
+    node = node->next;
+    l->tail->next = NULL;
+  }
+  pval = node->val;
+  free(node);
+  return pval;
+}
+
 void iterateList(struct list *l, void(*action)(struct listNode*)) {
   if (NULL == l || NULL == action) {
     return;
