@@ -14,9 +14,8 @@ struct list {
 };
 
 struct list *listCreate();
-
 int listPush(struct list *l, void *valPtr);
+void* listPop(struct list* l);
 void iterateList(struct list *l, void(*action)(struct listNode*));
-
 
 #endif

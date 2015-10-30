@@ -1,15 +1,4 @@
-#include <stdlib.h>
-struct listNode {
-  void* val;
-  struct listNode *next;
-};
-
-struct list {
-  struct listNode *head;
-  struct listNode *tail;
-  int len;
-};
-
+#include "list.h"
 struct list *listCreate() {
   struct list *newList = (struct list*)malloc(sizeof(struct list));
   if (NULL == newList) {
