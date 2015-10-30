@@ -18,5 +18,6 @@ int listPush(struct list *l, void *valPtr);
 void* listPop(struct list* l);
 void iterateList(struct list *l, void(*action)(struct listNode*));
 int listInsert(struct list* l, int i, void* val);
+void* listRemove(struct list* l, int i); 
 int listIsEmpty(struct list* l);
 #endif

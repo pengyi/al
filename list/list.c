@@ -104,6 +104,40 @@ int listInsert(struct list* l, int i, void* val) {
     return l->len;
 }
 
+void* listRemove(struct list* l, int i) {
+    struct listNode* pre, *node;
+    void* val;
+    int step = 1;
+    if (NULL == l || i <= 0 || i > l->len) {
+        return NULL;
+    }
+    if (listIsEmpty(l)) {
+        return NULL;
+    }
+    pre  = NULL;
+    node = l->head;
+    while(step < i || node != NULL) {
+        pre  = node;
+        node = node->next;
+        step++;
+    }
+
+    if (1 == i) {
+        l->head = node->next;
+    } else if (i == l->len) {
+        l->tail   = pre;
+        pre->next = NULL;
+    } else {
+        pre->next = node->next;
+    }
+    l->len--;
+    val = node->val;
+    free(node);
+    return val;
+}
+
+
+
 void iterateList(struct list *l, void(*action)(struct listNode*)) {
   if (NULL == l || NULL == action) {
     return;
