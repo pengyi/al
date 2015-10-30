@@ -49,7 +49,59 @@ void* listPop(struct list* l) {
   }
   pval = node->val;
   free(node);
+  l->len--;
   return pval;
+}
+
+int listIsEmpty(struct list* l) {
+    if (NULL == l) {
+        return 1;
+    }
+    if (NULL == l->head || NULL == l->tail || 0 == l->len) {
+        return 1;
+    }
+    return 0;
+}
+
+int listInsert(struct list* l, int i, void* val) {
+    int step = 0;
+    struct listNode* pre, *cur;
+    if (NULL == l || i < 0) {
+        return -1;
+    }
+    if (i > l->len) {
+        i = l->len;
+    }
+    struct listNode *node = (struct listNode*)malloc(sizeof(struct listNode));
+    if (NULL == node) {
+        return -1;
+    }
+    node->val  = val;
+    node->next = NULL;
+    if (listIsEmpty(l)) {
+        l->head = l->tail = node;
+        l->len  = 1;
+    } else {
+        pre = NULL;
+        cur = l->head;
+        while(step < i && cur != NULL) {
+            pre = cur;
+            cur = cur->next;
+            step++;
+        }
+        if (NULL == pre) {
+            node->next = l->head;
+            l->head = node;
+        } else if (NULL == cur) {
+            l->tail->next = node;
+            l->tail = node;
+        } else {
+            pre->next = node;
+            node->next = cur;
+        }
+        l->len++;
+    }
+    return l->len;
 }
 
 void iterateList(struct list *l, void(*action)(struct listNode*)) {
@@ -63,15 +115,6 @@ void iterateList(struct list *l, void(*action)(struct listNode*)) {
     p = p->next;
   }
 }
-
-
-
-
-
-
-
-
-
 
 
 
