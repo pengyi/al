@@ -32,8 +32,9 @@ int main(int argc, char* argv[]) {
   if (NULL == l) {
     return -1;
   }
+  printf("create list\n");
   for (i = 0; i < 5; ++i) {
-    printf("len %d\n", listPush(l, &a[i]));
+    printf("insert num %d, The len %d\n", a[i], listPush(l, &a[i]));
   }
   popVal =*((int*)listPop(l));
   printf("pop val is %d\n", popVal);
@@ -53,5 +54,18 @@ int main(int argc, char* argv[]) {
   printInt("pop val is", pVal);
   iterateList(l, &printList);
   printf("\n");
+  printf("The List len is:%d\n", listLen(l));
+  
+  pVal = (int*)listGetVal(l, 2);
+  printInt("The 2th val is ", pVal);
+  pVal = (int*)listGetVal(l, 5);
+  printInt("The 5th val is ", pVal);
+  pVal = (int*)listGetVal(l, 4);
+  printInt("The 4th val is ", pVal);
+  pVal = (int*)listGetVal(l, 1);
+  printInt("The 1th val is ", pVal);
+
+  listDestroy(l);
+  printf("destroy list\n");
   return 0;
 }

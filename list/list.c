@@ -10,6 +10,30 @@ struct list *listCreate() {
   return newList;
 }
 
+int listLen(struct list* l) {
+    if (NULL == l) {
+        return 0;
+    }
+    return l->len;
+}
+
+void* listGetVal(struct list *l, int i) {
+    struct listNode* p;
+    int step = 1;
+    if (NULL == l || i <= 0 || i > l->len) {
+        return NULL;
+    }
+    p = l->head;
+    while (step < i && p != NULL) {
+        p = p->next;
+        step++;
+    }
+    if (NULL == p) {
+        return NULL;
+    }
+    return p->val;
+}
+
 int listPush(struct list *l, void *valPtr) {
   if (NULL == l || NULL == valPtr) {
     return -1;
@@ -150,5 +174,19 @@ void iterateList(struct list *l, void(*action)(struct listNode*)) {
   }
 }
 
+int listDestroy(struct list* l) {
+    struct listNode* node, *p;
+    if (NULL == l) {
+        return 1;
+    }
+    p = l->head;
+    while(p != NULL) {
+        node = p;
+        p = p->next;
+        free(node);
+    }
+    free(l);
+    return 1;
+}
 
 
