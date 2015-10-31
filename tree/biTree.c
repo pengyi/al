@@ -17,6 +17,18 @@ pBiTree createBiTree_r(void** in, int i, int len) {
     return pNode;
 }
 
+ void destroyBiTree_r(pBiTree T) {
+     pBiTree l,r;
+     if (NULL == T) {
+         return;
+     }
+     l = T->l;
+     r = T->r;
+     free(T);
+     destroyBiTree_r(l);
+     destroyBiTree_r(r);
+ }
+
  void preTraverse_r(pBiTree T, void(*action)(pBiTree)) {
      if (NULL == T || NULL == action) {
          return;

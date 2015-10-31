@@ -11,6 +11,7 @@ typedef struct binaryTree {
 
 
 pBiTree createBiTree_r(void** in, int i, int len);
+void destroyBiTree_r(pBiTree T);
 
 void preTraverse_r(pBiTree T, void(*action)(pBiTree));
 void inTraverse_r(pBiTree T, void(*action)(pBiTree));

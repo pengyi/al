@@ -17,6 +17,10 @@ void** getPointers(int* a, int len) {
     return p;
 }
 
+void freePointersSpace(void**p) {
+    free(p);
+}
+
 void printNode(pBiTree T) {
     int* pval;
     if (NULL == T) {
@@ -53,5 +57,9 @@ int main() {
     printf("postorder traverse sequence is:\n");
     postTraverse_r(T, printNode);
     printf("\n");
+    printf("destroy binary Tree\n");
+    destroyBiTree_r(T);
+    printf("free allocated space\n");
+    freePointersSpace(pa);
     return 0;
 }
