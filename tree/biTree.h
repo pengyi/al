@@ -17,6 +17,8 @@ void preTraverse_r(pBiTree T, void(*action)(pBiTree));
 void inTraverse_r(pBiTree T, void(*action)(pBiTree));
 void postTraverse_r(pBiTree T, void(*action)(pBiTree));
 
+void levelTraverse(pBiTree T, void(*action)(pBiTree));
+
 
 #endif
 

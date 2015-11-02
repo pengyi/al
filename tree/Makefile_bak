@@ -1,0 +1,12 @@
+objects = exg.o biTree.o list.o
+target = exg
+CFLAGS = -g $(INC)
+VPATH = .:../list
+exg : $(objects)
+	gcc -o $(target) $(objects)
+$(objexts) : %.o:%.c
+	gcc -c $(CFLAGS) $< -o $@ 
+.PHONY : clean
+clean :
+	-rm $(target) $(objects)
+#end

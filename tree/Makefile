@@ -1,10 +1,15 @@
-objects = exg.o biTree.o
+objects = exg.o biTree.o list.o
 target = exg
-CFLAGS = '-g'
+CFLAGS = -g 
 exg : $(objects)
-	gcc -o $(target) $(CFLAGS) $(objects)
-$(objexts) : %.o:%.c
-	gcc -c $(CFLAGS) $< -o $@
+	gcc -o $(target) $(objects)
+exg.o:exg.c
+	gcc -c exg.c -o exg.o
+list.o:../list/list.c ../list/list.h
+	gcc -c ../list/list.c -o list.o
+biTree.o:biTree.c biTree.h
+	gcc -c biTree.c -o biTree.o
 .PHONY : clean
 clean :
-	rm $(target) $(objects)
+	-rm $(target) $(objects)
+#end

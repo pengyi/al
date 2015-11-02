@@ -57,6 +57,8 @@ int main() {
     printf("postorder traverse sequence is:\n");
     postTraverse_r(T, printNode);
     printf("\n");
+    levelTraverse(T, printNode);
+    printf("\n");
     printf("destroy binary Tree\n");
     destroyBiTree_r(T);
     printf("free allocated space\n");

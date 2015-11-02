@@ -1,4 +1,6 @@
+
 #include "biTree.h"
+
 
 pBiTree createBiTree_r(void** in, int i, int len) {
     void* val = NULL;
@@ -56,3 +58,24 @@ void postTraverse_r(pBiTree T, void(*action)(pBiTree)) {
     postTraverse_r(T->r, action);
     action(T);
 }
+
+
+void levelTraverse(pBiTree T, void(*action)(pBiTree)) {
+    struct list *stack;
+    pBiTree node;
+    if (NULL == T || NULL == action) {
+        return;
+    }
+    stack = listCreate();
+    listPush(stack, T);
+    while(listLen(stack) > 0) {
+        node = (pBiTree)listRemove(stack, 0);
+        action(node);
+        if (node->l) {
+            listPush(stack, node->l);
+        }
+        if (node->r) {
+             listPush(stack, node->r);
+        }
+    }
+ }
