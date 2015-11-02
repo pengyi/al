@@ -154,6 +154,9 @@ void* listRemove(struct list* l, int i) {
     } else {
         pre->next = node->next;
     }
+    if (l->len == 1) {
+        l->head = l->tail = NULL;
+    }
     l->len--;
     val = node->val;
     free(node);
